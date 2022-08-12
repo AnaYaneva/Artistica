@@ -145,7 +145,6 @@ public class WorkshopControllerTest {
                         .file(referencePhoto)
                         .file(finalPhoto)
                         .file(video)
-                        //.param("id", "1000")
                         .param("Description", "an intermediate course")
                         .param("Name", "Intermediate course")
                         .param("category", WorkshopCategoryEnum.WATERCOLOR.name())
@@ -200,14 +199,14 @@ public class WorkshopControllerTest {
         ExperienceLevelEntity intermediate = new ExperienceLevelEntity().setName(ExperienceLevelEnum.INTERMEDIATE);
         ExperienceLevelEntity savedExpLevel = experienceLevelRepository.save(beginner);
         experienceLevelRepository.save(intermediate);
-        OnlineWorkshopEntity offer=new OnlineWorkshopEntity()
+        OnlineWorkshopEntity workshop=new OnlineWorkshopEntity()
                 .setCategory(savedCategory)
                 .setDescription("A course for beginners")
                 .setName("beginner course")
                 .setExperienceLevel(savedExpLevel)
                 .setStatus(StatusEnum.PENDING)
                 .setMentor(userRepository.findByUsername("mentor@example.com").orElse(null));
-        return this.workshopRepository.save(offer);
+        return this.workshopRepository.save(workshop);
     }
 
     private UserEntity getTestUser() {
