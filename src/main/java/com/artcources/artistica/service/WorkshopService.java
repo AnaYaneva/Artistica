@@ -220,7 +220,7 @@ public class WorkshopService {
     }
 
     public List<WorkshopsAllViewModel> searchWorkshop(String keyword) {
-        return this.workshopRepository.findAllByNameLike("%" + keyword + "%")
+        return this.workshopRepository.findAllByNameLikeAndStatus("%" + keyword + "%",StatusEnum.APPROVED)
                 .stream()
                 .map(workshop -> this.modelMapper.map(workshop, WorkshopsAllViewModel.class))
                 .collect(Collectors.toList());
