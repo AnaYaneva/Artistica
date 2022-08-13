@@ -239,20 +239,20 @@ public class WorkshopController {
 
     //ADD ADMIN ROLE
     @PatchMapping("/addToList")
-    public String addWorkshoptoList(@RequestParam Long id, Principal principal){
+    public String addWorkshopToList(@RequestParam Long id, Principal principal){
         boolean isWorkshopExist = this.workshopService.existById((id));
         if(isWorkshopExist) {
-            this.workshopService.addWorkshopToUser((id),principal);
+            this.workshopService.addWorkshopToUser(id,principal);
         }
-
+        
         return "redirect:/workshops/"+id;
     }
 
     //REMOVE ADMIN ROLE
     @PatchMapping("/removeFromList")
     public String removeWorkshopFromList(@RequestParam Long id, Principal principal){
-        boolean isUserExist = this.workshopService.existById(id);
-        if(isUserExist) {
+        boolean isWorkshopExist = this.workshopService.existById(id);
+        if(isWorkshopExist) {
             this.workshopService.removeWorkshopFromUser(id,principal);
         }
 
